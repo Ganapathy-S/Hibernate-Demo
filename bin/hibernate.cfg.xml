@@ -1,0 +1,45 @@
+<!DOCTYPE hibernate-configuration SYSTEM
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">
+			org.hsqldb.jdbcDriver
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:hsqldb:hsql://localhost
+		</property>
+		<property name="hibernate.connection.username">sa</property>		
+		<property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+		
+		<!-- hibernate tool -->
+		<property name="hibernate.hbm2ddl.auto">create</property>
+		<!-- Use the C3P0 connection pool provider -->
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<!-- Show and print nice SQL on stdout -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+				
+		<!-- List of XML mapping files -->
+		<mapping resource="com/demo/helloworld/hello.hbm.xml"/>
+		<mapping resource="com/demo/oneToOneUsingPrimaryKey/oneToOneUsingPrimaryKey.hbm.xml"/>
+		<mapping resource="com/demo/oneToOneUsingForeignKey/oneToOneUsingForeignKey.hbm.xml"/>
+		<mapping resource="com/demo/oneToOneUsingJoinTable/oneToOneUsingJoinTable.hbm.xml"/> 
+		<mapping resource="com/demo/collections/Set/com.demo.collections.Set.hbm.xml"/>
+		<mapping resource="com/demo/collections/Bag/com.demo.collections.Bag.hbm.xml"/>
+		<mapping resource="com/demo/collections/List/com.demo.collection.List.hbm.xml"/>
+		<mapping resource="com/demo/collections/Map/com.demo.collection.Map.hbm.xml"/>
+		<mapping resource="com/demo/components/com.demo.Components.hbm.xml"/>
+		<mapping resource="com/demo/collectionOfComponents/com.demo.collectionOfComponents.hbm.xml"/>
+		<mapping resource="com/demo/oneToManyUnidirectional/oneToManyUnidirectional.hbm.xml"/>
+		<mapping resource="com/demo/oneToManyBidirectional/oneToManyBidirectional.hbm.xml"/>
+		<mapping resource="com/demo/oneToManyUsingJoinTable/oneToManyUsingJoinTable.hbm.xml"/>
+		<mapping resource="com/demo/manyToManyUnidirectional/manyToManyUnidirectional.hbm.xml"/>
+		<mapping resource="com/demo/manyToManyBidirectional/manyToManyBidirectional.hbm.xml"/>
+		<mapping resource="com/demo/HQLexamples/namedQueries.hbm.xml"/>
+		<mapping resource="com/demo/CriteriaExamples/criteriaExample.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

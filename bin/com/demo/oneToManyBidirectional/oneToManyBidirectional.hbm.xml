@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.oneToManyBidirectional.User" table="USER"
+		lazy="false">
+		<id name="id" column="USER_ID">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" />
+		<set name="accounts" cascade="save-update">
+			<key column="USER_ID" not-null="true"/>
+			<one-to-many class="com.demo.oneToManyBidirectional.Account" />
+		</set>
+	</class>
+	<class name="com.demo.oneToManyBidirectional.Account" table="ACCOUNT"
+		lazy="false">
+		<id name="id" column="ACCOUNT_ID">
+			<generator class="native" />
+		</id>
+		<property name="accountType" column="ACCOUNT_TYPE" />
+		<many-to-one name="user" column="USER_ID"
+			class="com.demo.oneToManyBidirectional.User" not-null="true" insert="false" update="false"/>
+	</class>
+	
+	<!-- To insert the data from the Account side follow the below configuration --> 
+	<!--  <class name="com.demo.oneToManyBidirectional.User" table="USER"
+		lazy="false">
+		<id name="id" column="USER_ID">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" />
+		<set name="accounts" cascade="save-update" inverse="save-update">
+			<key column="USER_ID" />
+			<one-to-many class="com.demo.oneToManyBidirectional.Account" />
+		</set>
+	</class>
+	<class name="com.demo.oneToManyBidirectional.Account" table="ACCOUNT"
+		lazy="false">
+		<id name="id" column="ACCOUNT_ID">
+			<generator class="native" />
+		</id>
+		<property name="accountName" column="ACCOUNT_NAME" />
+		<many-to-one name="user" column="USER_ID"
+			class="com.demo.oneToManyBidirectional.User" not-null="true"/>
+	</class>
+	 -->
+</hibernate-mapping>

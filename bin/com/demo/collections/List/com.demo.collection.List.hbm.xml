@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.collections.List.TeamLeader" table="TEAM_LEADER" lazy="false" > 
+		<id name="id" column="LEADER_ID" type="long">
+			<generator class="native" />
+		</id>
+		<property name="leaderName" column="LEADER_NAME" />
+		<!-- Declaring the List -->		
+		<list name="teamMembers" table="MEMBERS" lazy="false">
+			<key column="LEADER_ID" />
+			<list-index column="ORDER_ID" />
+			<element type="string" column="MEMBER_NAME" not-null="true" />
+		</list>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.collectionOfComponents.Recruitment" table="RECRUITMENTS" lazy="false">
+		<id name="id" column="RCRMT_ID">
+			<generator class="native" />
+		</id>
+		<property name="recruitmentName" column="RCRMT_NAME" />
+		
+		<set name="selectedCandidates" table="SELECTED_LIST" order-by="name asc"
+			lazy="false">
+			<key column="RCRMT_ID" />
+			<composite-element class="com.demo.collectionOfComponents.Candidate">
+				<parent name="recruitment" />
+				<property name="name" column="NAME"/>
+				<property name="age" column="AGE"/>
+				<property name="qualification" column="QUALIFICATION"/>
+				<property name="experience" column="EXPERIECE"/>
+			</composite-element>
+		</set>
+		
+		<set name="rejectedCandidates" table="REJECTED_LIST" order-by="name asc"
+			lazy="false">
+			<key column="RCRMT_ID" />
+			<composite-element class="com.demo.collectionOfComponents.Candidate">
+				<parent name="recruitment" />
+				<property name="name" column="NAME"/>
+				<property name="age" column="AGE"/>
+				<property name="qualification" column="QUALIFICATION"/>
+				<property name="experience" column="EXPERIECE"/>
+			</composite-element>
+		</set>
+	</class>
+</hibernate-mapping>

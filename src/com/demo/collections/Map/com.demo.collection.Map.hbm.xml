@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.collections.Map.Exam" table="EXAMS" lazy="false">
+		<id name="id" column="EXAM_ID">
+			<generator class="native" />
+		</id>
+		<property name="examName" column="EXAM_NAME" />
+		<map name="timeTable" table="TIME_TABLE" lazy="false">
+			<key column="EXAM_ID" />
+			<map-key column="SUBJECT" type="string" />
+			<element column="EXAM_DATE" type="date" />
+		</map>
+	</class>
+</hibernate-mapping>

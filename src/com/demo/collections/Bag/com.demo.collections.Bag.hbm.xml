@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.collections.Bag.Tour" table="TOURS" lazy="false">
+		<id name="id" column="TOURIST_ID" type="long">
+			<generator class="native" />
+		</id>
+		<property name="touristName" column="TOURIST_NAME"></property>
+		<property name="numberOfTimesTravelled" column="NUMBER_OF_TRAVELS"
+			type="integer" />
+		<!-- Declaration for Bag -->
+		<idbag name="travelledCountries" table="COUNTRIES" lazy="false">
+			<collection-id type="string" column="BAG_TABLE_ID">
+				<generator class="sequence"/>				
+			</collection-id>
+			<key column="TOURIST_ID" />
+			<element type="string" column="COUNTRY" not-null="true" />
+		</idbag>
+	</class>
+</hibernate-mapping>

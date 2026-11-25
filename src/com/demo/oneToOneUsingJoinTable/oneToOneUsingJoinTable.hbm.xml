@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.demo.oneToOneUsingJoinTable.Person" table="PERSON"
+		lazy="false">
+		<id name="id" column="PERSON_ID">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" />
+		<join table="PASSPORTS" optional="true">
+			<key column="PERSON_ID" />
+			<many-to-one name="passport" column="PASSPORT_ID"
+				not-null="true" unique="true" cascade="save-update"/>
+		</join>
+	</class>
+
+	<class name="com.demo.oneToOneUsingJoinTable.Passport" table="PASSPORT" lazy="false">
+		<id name="id" column="PASSPORT_ID">
+			<generator class="native" />
+		</id>
+		<property name="passportNumber" column="PASSPORT_NUMBER" />
+		<join table="PASSPORTS" optional="true" inverse="true">
+			<key column="PASSPORT_ID" unique="true"/>
+			<many-to-one name="person" column="PERSON_ID" not-null="true"
+				unique="true" />
+		</join>
+	</class>
+</hibernate-mapping>

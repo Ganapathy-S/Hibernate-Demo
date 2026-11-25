@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.oneToManyUsingJoinTable.Buyer" table="BUYER" lazy="false">
+		<id name="id" column="BUYER_ID">
+			<generator class="native" />
+		</id>
+		<property name="buyerName" column="BUYER_NAME" />
+		<set name="properties" table="PROPERTY_BUYER" cascade="save-update" lazy="false">
+			<key column="BUYER_ID" />
+			<many-to-many class="com.demo.oneToManyUsingJoinTable.Property"
+				column="PROPERTY_ID" unique="true" />
+		</set>
+	</class>
+	<class name="com.demo.oneToManyUsingJoinTable.Property" table="PROPERTY" lazy="false">
+		<id name="id" column="PROPERTY_ID">
+			<generator class="native" />
+		</id>
+		<property name="propertyName" column="PROPERTY_NAME" />
+		<property name="propertyValue" column="PROPERTY_VALUE" />
+		<join table="PROPERTY_BUYER" optional="true" inverse="true">
+			<key column="PROPERTY_ID" unique="true" not-null="true" />
+			<many-to-one name="buyer" column="BUYER_ID" />
+		</join>
+	</class>
+</hibernate-mapping>

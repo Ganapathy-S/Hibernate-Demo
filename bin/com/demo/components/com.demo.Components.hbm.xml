@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.components.Customers" table="CUSTOMERS">
+		<id name="id" column="CUSTOMER_ID" type="long">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" type="string" />
+		<component name="homeAddress" class="com.demo.components.Address">
+			<property name="street" type="string" column="HOME_STREET"
+				not-null="true" />
+			<property name="city" type="string" column="HOME_CITY"
+				not-null="true" />
+			<property name="zipCode" type="string" column="HOME_ZIPCODE"
+				not-null="true" />
+		</component>
+		<component name="billingAddress" class="com.demo.components.Address">
+			<property name="street" type="string" column="BILLING_STREET"
+				not-null="true" />
+			<property name="city" type="string" column="BILLING_CITY"
+				not-null="true" />
+			<property name="zipCode" type="string" column="BILLING_ZIPCODE"
+				not-null="true" />
+		</component>		
+	</class>
+</hibernate-mapping>

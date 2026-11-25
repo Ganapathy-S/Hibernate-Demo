@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.demo.CriteriaExamples.Employee" table="EMPLOYEES">
+		<id name="id" column="EMP_ID">
+			<generator class="native" />
+		</id>
+		<property name="empName" column="EMP_NAME"/>
+		<property name="age" column="AGE"/>
+		<property name="salary" column="SALARY"/>
+	</class>
+</hibernate-mapping>

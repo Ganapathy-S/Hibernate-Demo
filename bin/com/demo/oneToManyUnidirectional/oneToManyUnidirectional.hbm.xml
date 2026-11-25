@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.oneToManyUnidirectional.User" table="USER"
+		lazy="false">
+		<id name="id" column="USER_ID">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME"/>
+	</class>
+	<class name="com.demo.oneToManyUnidirectional.Account" table="ACCOUNT"
+		lazy="false">
+		<id name="id" column="ACCOUNT_ID">
+			<generator class="native" />
+		</id>
+		<property name="accountType" column="ACCOUNT_TYPE"/>
+		<many-to-one name="user" column="USER_ID"
+		class="com.demo.oneToManyUnidirectional.User" not-null="true"/>
+	</class>
+
+</hibernate-mapping>

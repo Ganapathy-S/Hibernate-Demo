@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.manyToManyUnidirectional.Student" table="STUDENTS"
+		lazy="false">
+		<id name="id" column="STUDENT_ID">
+			<generator class="native" />
+		</id>
+		<property name="studentName" column="STUDENT_NAME" />
+		<set name="courses" table="STUDENT_COURSE" lazy="false" cascade="save-update">
+			<key column="STUDENT_ID" not-null="true" />
+			<many-to-many class="com.demo.manyToManyUnidirectional.Course"
+				column="COURSE_ID" />
+		</set>
+	</class>
+
+	<class name="com.demo.manyToManyUnidirectional.Course" table="COURSES"
+		lazy="false">
+		<id name="id" column="COURSE_ID">
+			<generator class="native" />
+		</id>
+		<property name="courseName" column="COURSE_NAME" />
+	</class>
+</hibernate-mapping>

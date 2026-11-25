@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class name="com.demo.oneToOneUsingPrimaryKey.User" table="USER" lazy="false">
+		<id name="id" column="USER_ID" type="long">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" type="string" />
+		<one-to-one name="address" class="com.demo.oneToOneUsingPrimaryKey.Address"
+			cascade="save-update" />
+	</class>
+
+	<class name="com.demo.oneToOneUsingPrimaryKey.Address" table="ADDRESS">
+		<id name="id" column="ADDRESS_ID">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+
+		<property name="street" column="STREET" />
+		<property name="zipCode" column="ZIPCODE" />
+		<property name="city" column="CITY" />
+		<one-to-one name="user" class="com.demo.oneToOneUsingPrimaryKey.User"
+			constrained="true" />
+	</class>
+</hibernate-mapping>
